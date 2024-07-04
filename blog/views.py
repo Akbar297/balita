@@ -17,6 +17,7 @@ def home_view(request):
     posts = Article.objects.all().order_by('-view_count')
     pag_obj = Paginator(posts, 4)
     last_post = Article.objects.all().order_by('-created_at')[:3]
+    more_blog_post = Article.objects.all().order_by('view_count')[:3]
 
     d = {
         "home": "active",
@@ -24,7 +25,8 @@ def home_view(request):
         "tags": tags,
         "slider_article": slider_article,
         "posts": pag_obj.get_page(page),
-        "last_post": last_post
+        "last_post": last_post,
+        "more_blog_post": more_blog_post
     }
     return render(request, 'index.html', context=d)
 
@@ -85,7 +87,7 @@ def article_info(request, pk):
     tags = Tag.objects.all()
     detail.view_count += 1
     detail.save(update_fields=['view_count'])
-    comments = Comments.objects.filter(is_visible=True)
+    comments = Comments.objects.filter(id=pk)
     d = {
         "category": "active",
         'comments': comments,
@@ -113,7 +115,7 @@ def contact_view(request):
                                          phone_number=data['phone'])
             obj.save()
             text = f"""
-                    project: MOOSE \nid: {obj.id} \nname: {obj.full_name} \ntime_step: {obj.created_at} \nmessage: {obj.message}
+                    project: BALITA \nid: {obj.id} \nname: {obj.name} \ntime_step: {obj.created_at} \nmessage: {obj.message}
                     """
 
             url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=<{text}>'

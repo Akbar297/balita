@@ -21,7 +21,7 @@ def validate_contact_form(data):
         d['error'] = 'Message should be grater than 10 chars'
         return d
 
-    if phone[:4] != '+998' or len(phone) != 13 or phone[1:].isnumeric():
+    if phone is None:
         d['error'] = 'Phone number is...'
         return d
     d['ok'] = True
