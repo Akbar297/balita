@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'akbar_balita',
         'HOST': 'dodb-do-user-17113779-0.a.db.ondigitalocean.com',
         'USER': 'doadmin',
-        # 'PASSWORD': 'AVNS_J5A-szb7Q3GiIqAXzw6',
+        'PASSWORD': 'AVNS_J5A-szb7Q3GiIqAXzw6',
         'PORT': '25060',
     }
 }
