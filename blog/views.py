@@ -4,8 +4,7 @@ from .models import Article, Category, Contact, Comments, Tag
 from .validators import validate_contact_form
 import requests
 
-BOT_TOKEN = '6538606606:AAH2YUwidwBTWHweGrdz_3rlBeI99UkTqok'
-CHAT_ID = '728795819'
+
 
 
 def home_view(request):
@@ -114,13 +113,13 @@ def contact_view(request):
             obj = Contact.objects.create(name=data['name'], email=data['email'], message=data['message'],
                                          phone_number=data['phone'])
             obj.save()
-            text = f"""
-                    project: BALITA \nid: {obj.id} \nname: {obj.name} \ntime_step: {obj.created_at} \nmessage: {obj.message}
-                    """
+            # text = f"""
+            #         project: BALITA \nid: {obj.id} \nname: {obj.name} \ntime_step: {obj.created_at} \nmessage: {obj.message}
+            #         """
 
-            url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=<{text}>'
-            response = requests.get(url)
-            print(response)
+            # url = f'https://api.telegram.org/bot{}/sendMessage?chat_id={CHAT_ID}&text=<{text}>'
+            # response = requests.get(url)
+            # print(response)
             return redirect('/contact')
         d['error'] = validate['error']
         return render(request, 'contact.html', context=d)
