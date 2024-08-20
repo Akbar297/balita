@@ -44,13 +44,12 @@ jobs:
           cp ssh_key ~/.ssh/id_rsa
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
 
-          ssh -tt root@$HOST << 'EOF'
+          ssh root@$HOST << 'EOF'
             set -e
             cd /root/Akbar/balita
             git pull
             sudo systemctl restart akbar_balita1.service  
-            sudo systemctl status akbar_balita1.service
-            exit
+            sudo systemctl status akbar_balita1.service    
           EOF
 
       - name: Send Success Message
