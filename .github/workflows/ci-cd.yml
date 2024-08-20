@@ -49,7 +49,8 @@ jobs:
             cd /root/Akbar/balita
             git pull
             sudo systemctl restart akbar_balita1.service  
-            sudo systemctl status akbar_balita1.service  
+            sudo systemctl status akbar_balita1.service
+            exit
           EOF
 
       - name: Send Success Message
